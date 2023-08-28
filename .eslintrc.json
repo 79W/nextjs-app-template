@@ -1,7 +1,19 @@
 {
-  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "extends": ["next", "next/core-web-vitals"],
   "globals": {
-    "React": "readonly"
+    "React": "readonly",
+    "NodeJS": true,
+    "node": true,
+    "browser": true,
+    "es2021": true,
+    "es6": true,
+    "es2017": true,
+    "ESNext": true,
+    "fetch": false
+  },
+  "env": {
+    "node": true,
+    "browser": true
   },
   "rules": {
     "no-unused-vars": "warn"
