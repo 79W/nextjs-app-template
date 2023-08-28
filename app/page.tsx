@@ -1,5 +1,8 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import Image from "next/image";
+import styles from "./page.module.scss";
+
+import { Button } from 'antd';
 
 export default function Home() {
   return (
@@ -15,7 +18,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -37,6 +40,8 @@ export default function Home() {
           height={37}
           priority
         />
+        <br />
+        <Button>Nextjs App</Button>
       </div>
 
       <div className={styles.grid}>
@@ -91,5 +96,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
