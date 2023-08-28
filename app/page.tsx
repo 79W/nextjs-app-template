@@ -1,10 +1,13 @@
-'use client';
+"use client";
 import Image from "next/image";
 import styles from "./page.module.scss";
 
-import { Button } from 'antd';
+import { countStore } from "@/store";
+
+import { Button, Space } from "antd";
 
 export default function Home() {
+  const { count, decrease, increase } = countStore();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -32,16 +35,40 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <br />
-        <Button>Nextjs App</Button>
+        <Space direction="vertical">
+          <Image
+            className={styles.logo}
+            src="/next.svg"
+            alt="Next.js Logo"
+            width={180}
+            height={37}
+            priority
+          />
+          <p
+            style={{
+              textAlign: "center",
+            }}
+          >
+            {count}
+          </p>
+          <Space>
+            <Button
+              onClick={() => {
+                decrease(1);
+              }}
+            >
+              decrease
+            </Button>
+            <Button
+              onClick={() => {
+                increase(1);
+              }}
+            >
+              increase
+            </Button>
+          </Space>
+          <Button block>Nextjs App</Button>
+        </Space>
       </div>
 
       <div className={styles.grid}>
