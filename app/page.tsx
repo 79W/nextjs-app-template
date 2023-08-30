@@ -2,12 +2,13 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 
-import { countStore } from "@/store";
+import { countAsync, countStore } from "@/store";
 
 import { Button, Space } from "antd";
 
 export default function Home() {
-  const { count, decrease, increase } = countStore();
+  const { fetchYiyan } = countAsync;
+  const { yiyan, count, decrease, increase } = countStore();
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -36,6 +37,15 @@ export default function Home() {
 
       <div className={styles.center}>
         <Space direction="vertical">
+          <p>{yiyan}</p>
+          <Button
+            onClick={() => {
+              fetchYiyan();
+            }}
+            block
+          >
+            获取一言
+          </Button>
           <Image
             className={styles.logo}
             src="/next.svg"

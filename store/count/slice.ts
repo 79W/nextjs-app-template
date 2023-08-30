@@ -1,16 +1,22 @@
-import createStore from '../createStore';
+import createStore from "../createStore";
 
 export interface CountState {
-    count: number,
-    increase: (number: number) => void,
-    decrease: (number: number) => void,
+  yiyan: string;
+  changeYiyan: (text: string) => void;
+  count: number;
+  increase: (number: number) => void;
+  decrease: (number: number) => void;
 }
 
-const countStore = createStore<CountState>((set) => ({
+const countStore = createStore<CountState>(
+  (set) => ({
+    yiyan: "",
+    changeYiyan: (text) => set((state) => ({ yiyan: text })),
     count: 0,
     increase: (number) => set((state) => ({ count: state.count + number })),
     decrease: (number) => set((state) => ({ count: state.count - number })),
-}), { name: 'count', lasting: ['count'] });
+  }),
+  { name: "count", lasting: ["count"] }
+);
 
-export default countStore
-  
+export default countStore;

@@ -109,10 +109,10 @@ const request = <T>(
   }
 
   // 导入请求拦截器
-//   options = interceptorsRequest({
-//     url,
-//     options
-//   })
+  options = interceptorsRequest({
+    url,
+    options
+  })
 
   // 超时处理
   const timeoutPromise = (timeout: number): Promise<IResponseData<any>> => {
@@ -125,7 +125,7 @@ const request = <T>(
     return new Promise((resolve) => {
       timeoutId = setTimeout(() => {
         const data = { code: 504, data: [], message: '请求超时，请稍后重新尝试。' }
-        // interceptorsErrorResponse(data)
+        interceptorsErrorResponse(data)
         controller.abort()
         resolve(data)
       }, timeout)

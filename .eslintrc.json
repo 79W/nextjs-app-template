@@ -16,6 +16,7 @@
     "browser": true
   },
   "rules": {
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "import/no-anonymous-default-export": "off"
   }
 }
