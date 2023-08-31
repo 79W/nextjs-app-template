@@ -1,14 +1,15 @@
-"use client";
+"use client"
 import Image from "next/image";
 import styles from "./page.module.scss";
 
-import { countAsync, countStore } from "@/store";
+import { useStore, countAsync, countStore } from "@/store";
 
 import { Button, Space } from "antd";
 
 export default function Home() {
   const { fetchYiyan } = countAsync;
-  const { yiyan, count, decrease, increase } = countStore();
+  const { yiyan, count, decrease, increase } = useStore(countStore, state => state);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -75,7 +76,7 @@ export default function Home() {
               }}
             >
               increase
-            </Button>
+            </Button> 
           </Space>
           <Button block>Nextjs App</Button>
         </Space>

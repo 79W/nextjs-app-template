@@ -16,7 +16,7 @@ const countStore = createStore<CountState>(
     increase: (number) => set((state) => ({ count: state.count + number })),
     decrease: (number) => set((state) => ({ count: state.count - number })),
   }),
-  { name: "count", lasting: ["count"] }
+  { name: "count", lasting: [] }
 );
 
 export default countStore;

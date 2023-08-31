@@ -4,7 +4,8 @@ import { persist, createJSONStorage, StateStorage } from "zustand/middleware";
 const storage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     console.log("storage[getItem]:", name, "has been retrieved");
-    return (await (window || global).localStorage.getItem(name)) || null;
+    if(!window.localStorage) return null
+    return (await window.localStorage.getItem(name)) || null;
   },
   setItem: async (name: string, value: string): Promise<void> => {
     console.log(
@@ -14,11 +15,13 @@ const storage: StateStorage = {
       value,
       "has been saved"
     );
-    await (window || global).localStorage.setItem(name, value);
+    if(!window.localStorage) return
+    await window.localStorage.setItem(name, value);
   },
   removeItem: async (name: string): Promise<void> => {
     console.log("storage[removeItem]:", name, "has been deleted");
-    await (window || global).localStorage.removeItem(name);
+    if(!window.localStorage) return
+    await window.localStorage.removeItem(name);
   },
 };
 
@@ -42,6 +45,7 @@ export default function createStore<T = { [key: string]: any }>(
       name: `${name}_storage`,
       storage: createJSONStorage(() => storage),
       partialize: (state: Omit<T, keyof T>) => {
+        console.log("这里进入了缓存partialize：")
         if (!lasting) return null;
         if (Array.isArray(lasting) && lasting.length > 0) {
           // 不缓存特定的变量

@@ -1,4 +1,7 @@
+import useStore from "./useStore";
+
 import countStore from "./count/slice";
 import countAsync from "./count/async";
 
-export { countStore, countAsync };
+
+export { useStore, countStore, countAsync };
